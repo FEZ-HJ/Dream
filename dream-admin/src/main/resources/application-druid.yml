@@ -55,3 +55,11 @@ spring:
                 wall:
                     config:
                         multi-statement-allow: true
+
+# 从库数据源
+slave:
+  # 从数据源开关/默认关闭
+  enabled: true
+  url: jdbc:mysql://116.62.185.83:3306/steamfree?allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+  username: dream
+  password: llyscysykr008#

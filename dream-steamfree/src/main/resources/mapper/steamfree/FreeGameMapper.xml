@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dream.steamfree.mapper.FreeGameMapper">
+    
+    <resultMap type="FreeGame" id="FreeGameResult">
+        <result property="id"    column="id"    />
+        <result property="allAssess"    column="all_assess"    />
+        <result property="assess"    column="assess"    />
+        <result property="chineseName"    column="chinese_name"    />
+        <result property="content"    column="content"    />
+        <result property="englishName"    column="english_name"    />
+        <result property="factory"    column="factory"    />
+        <result property="images"    column="images"    />
+        <result property="language"    column="language"    />
+        <result property="newPrice"    column="new_price"    />
+        <result property="price"    column="price"    />
+        <result property="rowImage"    column="row_image"    />
+        <result property="saleDate"    column="sale_date"    />
+        <result property="tag"    column="tag"    />
+        <result property="type"    column="type"    />
+    </resultMap>
+
+    <sql id="selectFreeGameVo">
+        select id, all_assess, assess, chinese_name, content, english_name, factory, images, language, new_price, price, row_image, sale_date, tag, type from free_game
+    </sql>
+
+    <select id="selectFreeGameList" parameterType="FreeGame" resultMap="FreeGameResult">
+        <include refid="selectFreeGameVo"/>
+        <where>  
+            <if test="allAssess != null  and allAssess != ''"> and all_assess = #{allAssess}</if>
+            <if test="assess != null  and assess != ''"> and assess = #{assess}</if>
+            <if test="chineseName != null  and chineseName != ''"> and chinese_name like concat('%', #{chineseName}, '%')</if>
+            <if test="content != null  and content != ''"> and content = #{content}</if>
+            <if test="englishName != null  and englishName != ''"> and english_name like concat('%', #{englishName}, '%')</if>
+            <if test="factory != null  and factory != ''"> and factory = #{factory}</if>
+            <if test="images != null  and images != ''"> and images = #{images}</if>
+            <if test="language != null  and language != ''"> and language = #{language}</if>
+            <if test="newPrice != null  and newPrice != ''"> and new_price = #{newPrice}</if>
+            <if test="price != null  and price != ''"> and price = #{price}</if>
+            <if test="rowImage != null  and rowImage != ''"> and row_image = #{rowImage}</if>
+            <if test="saleDate != null  and saleDate != ''"> and sale_date = #{saleDate}</if>
+            <if test="tag != null  and tag != ''"> and tag = #{tag}</if>
+            <if test="type != null  and type != ''"> and type = #{type}</if>
+        </where>
+    </select>
+    
+    <select id="selectFreeGameById" parameterType="Long" resultMap="FreeGameResult">
+        <include refid="selectFreeGameVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertFreeGame" parameterType="FreeGame" useGeneratedKeys="true" keyProperty="id">
+        insert into free_game
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="allAssess != null  and allAssess != ''">all_assess,</if>
+            <if test="assess != null  and assess != ''">assess,</if>
+            <if test="chineseName != null  and chineseName != ''">chinese_name,</if>
+            <if test="content != null  and content != ''">content,</if>
+            <if test="englishName != null  and englishName != ''">english_name,</if>
+            <if test="factory != null  and factory != ''">factory,</if>
+            <if test="images != null  and images != ''">images,</if>
+            <if test="language != null  and language != ''">language,</if>
+            <if test="newPrice != null  and newPrice != ''">new_price,</if>
+            <if test="price != null  and price != ''">price,</if>
+            <if test="rowImage != null  and rowImage != ''">row_image,</if>
+            <if test="saleDate != null  and saleDate != ''">sale_date,</if>
+            <if test="tag != null  and tag != ''">tag,</if>
+            <if test="type != null  and type != ''">type,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="allAssess != null  and allAssess != ''">#{allAssess},</if>
+            <if test="assess != null  and assess != ''">#{assess},</if>
+            <if test="chineseName != null  and chineseName != ''">#{chineseName},</if>
+            <if test="content != null  and content != ''">#{content},</if>
+            <if test="englishName != null  and englishName != ''">#{englishName},</if>
+            <if test="factory != null  and factory != ''">#{factory},</if>
+            <if test="images != null  and images != ''">#{images},</if>
+            <if test="language != null  and language != ''">#{language},</if>
+            <if test="newPrice != null  and newPrice != ''">#{newPrice},</if>
+            <if test="price != null  and price != ''">#{price},</if>
+            <if test="rowImage != null  and rowImage != ''">#{rowImage},</if>
+            <if test="saleDate != null  and saleDate != ''">#{saleDate},</if>
+            <if test="tag != null  and tag != ''">#{tag},</if>
+            <if test="type != null  and type != ''">#{type},</if>
+         </trim>
+    </insert>
+
+    <update id="updateFreeGame" parameterType="FreeGame">
+        update free_game
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="allAssess != null  and allAssess != ''">all_assess = #{allAssess},</if>
+            <if test="assess != null  and assess != ''">assess = #{assess},</if>
+            <if test="chineseName != null  and chineseName != ''">chinese_name = #{chineseName},</if>
+            <if test="content != null  and content != ''">content = #{content},</if>
+            <if test="englishName != null  and englishName != ''">english_name = #{englishName},</if>
+            <if test="factory != null  and factory != ''">factory = #{factory},</if>
+            <if test="images != null  and images != ''">images = #{images},</if>
+            <if test="language != null  and language != ''">language = #{language},</if>
+            <if test="newPrice != null  and newPrice != ''">new_price = #{newPrice},</if>
+            <if test="price != null  and price != ''">price = #{price},</if>
+            <if test="rowImage != null  and rowImage != ''">row_image = #{rowImage},</if>
+            <if test="saleDate != null  and saleDate != ''">sale_date = #{saleDate},</if>
+            <if test="tag != null  and tag != ''">tag = #{tag},</if>
+            <if test="type != null  and type != ''">type = #{type},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteFreeGameById" parameterType="Long">
+        delete from free_game where id = #{id}
+    </delete>
+
+    <delete id="deleteFreeGameByIds" parameterType="String">
+        delete from free_game where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>

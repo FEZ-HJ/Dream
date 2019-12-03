@@ -213,6 +213,7 @@
 		<module>dream-quartz</module>
 		<module>dream-generator</module>
         <module>dream-common</module>
+        <module>dream-steamfree</module>
     </modules>
     <packaging>pom</packaging>
 
